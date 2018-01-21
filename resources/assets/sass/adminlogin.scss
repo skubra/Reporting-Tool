@@ -1,0 +1,36 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$maincolor: #262626;
+
+.page-content {
+	background-color: $maincolor;
+	height: 170px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	z-index: -1;
+	.main-body {
+		top:0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+		margin-top: 120px;
+		position: absolute;
+		.panel-heading {
+			text-align: center;
+			font-size: 20px;
+			font-weight: 100;
+		}
+		.red-button {
+			background-color: $maincolor;
+			color: #fff;
+		}
+	}
+}

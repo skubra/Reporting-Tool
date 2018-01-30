@@ -1,20 +1,12 @@
-@extends('layouts.userApp')
+@extends('layouts.user_one_col')
 
-@section('title', 'Kullanıcı Giriş')
+@section('title', 'Raporlama Sistemi Kullanıcı Giriş Ekranı')
 
-@section('side-title')
-	<h2>Son Hareketler</h2>
-@endsection
-
-@section('main-title')
+@section('content-title')
 	<h2>Raporlama Sistemi Kullanıcı Giriş Ekranı</h2>
 @endsection
 
-@section('side-content')
-
-@endsection
-
-@section('main-content')
+@section('content')
 
 	<h5 style="text-align: center; margin-top:30px;"><strong>Son Eklenen Raporlar:</strong></h5>
 

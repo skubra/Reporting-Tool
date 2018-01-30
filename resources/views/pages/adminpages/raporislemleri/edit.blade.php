@@ -1,4 +1,4 @@
-@extends('layouts.adminApp')
+@extends('layouts.admin_two_col')
 
 @section('title', 'Rapor Düzenle')
 

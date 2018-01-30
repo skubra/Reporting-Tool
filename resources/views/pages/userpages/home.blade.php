@@ -1,4 +1,4 @@
-@extends('layouts.user_one_col')
+@extends('layouts.user_home')
 
 @section('title', 'Raporlama Sistemi Kullanıcı Giriş Ekranı')
 

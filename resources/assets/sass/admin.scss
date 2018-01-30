@@ -166,7 +166,7 @@ $dark_hover: #757575;
 			}
 
 			.main-column {
-				background-color: red;
+				background-color: white;
 				height: 100%;
 				overflow-y: scroll;
 				.content {
@@ -189,6 +189,13 @@ $dark_hover: #757575;
 					.stats {
 						text-align: center;
 					}
+
+					& h2 {
+						font-weight: lighter;
+						font-size: 25px;
+						padding-bottom: 10px;
+					}
+					
 				}
 			}
 

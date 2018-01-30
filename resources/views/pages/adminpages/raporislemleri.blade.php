@@ -18,7 +18,7 @@
 			    <tr>
 			      <th>ID</th>
 			      <th>Rapor Başlık</th>
-			      <th>Menü Başlık</th>
+			      <th>Kategori</th>
 			      <th></th>
 			    </tr>
 			</thead>
@@ -55,54 +55,42 @@
 
 @section('side-content')
 
-        <div class="alert alert-error">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    <form action="{{ route('raporislemleri.store') }}" method="POST">
+        {{ csrf_field() }}
+
+        @php ($menus = \App\Menu::pluck('title', 'id'))
+
+        {{ Form::label('menuid', "Kategori" ) }}
+        {{ Form::select('menuid', $menus, null, ['class' => 'form-control']) }}
+
+        <br>
+        {{ Form::label('Başlık') }}
+        {{ Form::text('title', '', ["class" => 'form-control']) }}
+
+        <br>
+        {{ Form::label('Veri Tabanı Sorgusu') }}
+        {{ Form::text('dbquery', '', ["class" => 'form-control']) }}
+
+        <br>
+        @php ($authority_groups = \App\AuthorityGroup::all())
+        <div class="">
+            {{ Form::label('Yetki Grupları') }}
+            <br>
+            @foreach ($authority_groups as $auth_group)
+                <label><input type="checkbox" name="group[]" value="{{ $auth_group->id }}">  {{ $auth_group->title }}</label>
+            @endforeach
         </div>
 
-	    <form action="{{ route('raporislemleri.store') }}" method="POST">
-            {{ csrf_field() }}
-
-            @php ($menus = \App\Menu::pluck('title', 'id'))
-
-            {{ Form::label('menuid', "Menü" ) }}
-            {{ Form::select('menuid', $menus, null, ['class' => 'form-control']) }}
-
-            <br>
-            {{ Form::label('Başlık') }}
-            {{ Form::text('title', '', ["class" => 'form-control']) }}
-
-            <br>
-            {{ Form::label('Veri Tabanı Sorgusu') }}
-            {{ Form::text('dbquery', '', ["class" => 'form-control']) }}
-
-            <br>
-            @php ($authority_groups = \App\AuthorityGroup::all())
-            <div class="">
-                {{ Form::label('Yetki Grupları') }}
-                <br>
-                @foreach ($authority_groups as $auth_group)
-                    <label><input type="checkbox" name="group[]" value="{{ $auth_group->id }}">  {{ $auth_group->title }}</label>
-                @endforeach
-            </div>
-
-            <br>
-            <label for="type" style="margin-left:45%;">İçerik:</label>
-            <br>
-            <div class="input-group" id="readroot" style="margin-top: 10px; display: none;">
-              <select class="form-control" name="type">
-                <option>Text</option>
-                <option>Tarih</option>
-                <option>Onay Kutusu</option>
-                <option>Seçenek Listesi</option>
-              </select>
+        <br>
+        <label for="type" style="margin-left:45%;">İçerik:</label>
+        <br>
+        <div class="input-group" id="readroot" style="margin-top: 10px; display: none;">
+          <select class="form-control" name="type">
+            <option>Text</option>
+            <option>Tarih</option>
+            <option>Onay Kutusu</option>
+            <option>Seçenek Listesi</option>
+          </select>
 
               <input style="margin-top:2px; margin-bottom: 2px;" type="text" name="label" placeholder="Alan Başlığı" class="form-control">
 
@@ -118,6 +106,19 @@
             <button type="submit" class="btn btn-default" style="display: block; margin: 0 auto;">Kaydet</button>
 
         </form>
+
+
+        <div class="alert alert-error">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
 @endsection
 

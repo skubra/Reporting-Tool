@@ -11,5 +11,8 @@
 	<td></td>
 	<td>
 		<a class="btn btn-primary btn-sm" href="{{ route('yetkigruplari.edit',$group->id) }}">Düzenle</a>
+		{!! Form::open(['route' => ['yetkigruplari.destroy', $group->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Yetki grubunu silmek istiyor musunuz?")']) !!}
+		{!! Form::submit('Sil', ['class' => 'btn btn-danger btn-sm']) !!}
+		{!! Form::close() !!}
 	</td>
 </tr>

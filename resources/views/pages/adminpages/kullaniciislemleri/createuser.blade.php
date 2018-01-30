@@ -1,15 +1,3 @@
-<div class="alert alert-error">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-</div>
-
 {!! Form::model(['route' => ['kullaniciislemleri.store'], 'method' => 'POST']) !!}
      {{ csrf_field() }}
 
@@ -36,3 +24,16 @@
     {{ Form::submit('Ekle', ["class" => 'form-control btn btn-warning']) }}
 
 {!! Form::close() !!}
+
+
+<div class="alert alert-error">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>

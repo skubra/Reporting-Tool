@@ -35,8 +35,6 @@
 
 	</div>
 
-	{{-- <button id="ekleButton" type="button" class="btn btn-default new" data-toggle="modal" data-target="#newUser">Yeni Kullanıcı Ekle</button> --}}
-
 @endsection
 
 @section('side-content')

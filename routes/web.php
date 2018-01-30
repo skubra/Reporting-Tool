@@ -24,5 +24,6 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::resource('admin/kullaniciislemleri','UsersController');
 	Route::resource('admin/raporislemleri','ReportController');
 	Route::resource('admin/yetkigruplari','UserPermissionController');
+	Route::resource('admin/kategori', 'MenuController');
 	Route::put('admin/yetkigruplari/{id}/edit','UserPermissionController@updateTitle')->name('yetkigruplari.update.title');
 });

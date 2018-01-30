@@ -137,6 +137,13 @@ class UserPermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = AuthorityGroup::find($id);
+
+        $group->prohibited_reports()->detach();
+
+        $group->delete();
+
+        return redirect()->route('yetkigruplari.index');
+
     }
 }

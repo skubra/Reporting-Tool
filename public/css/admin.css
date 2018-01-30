@@ -8506,7 +8506,7 @@ button.close {
 }
 
 #app .page-content .main-body .main-column {
-  background-color: red;
+  background-color: white;
   height: 100%;
   overflow-y: scroll;
 }
@@ -8533,6 +8533,12 @@ button.close {
 
 #app .page-content .main-body .side-column .side-content .stats {
   text-align: center;
+}
+
+#app .page-content .main-body .side-column .side-content h2 {
+  font-weight: lighter;
+  font-size: 25px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 767px) {

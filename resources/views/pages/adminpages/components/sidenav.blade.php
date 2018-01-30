@@ -16,19 +16,20 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('kategori.index') }}"><i class="glyphicon glyphicon-inbox"></i><h4 class="li-text">KATEGORİ<br>İŞLEMLERİ</h4></a>
+                </li>
+
+                <li>
                     <a href="{{ route('raporislemleri.index') }}"><i class="glyphicon glyphicon-duplicate"></i><h4 class="li-text">RAPOR İŞLEMLERİ</h4></a>
                 </li>
-                {{-- <p><strong>Rapor</strong> Düzenleme İşlemleri</p> --}}
 
                 <li>
                     <a href="{{ route('kullaniciislemleri.index') }}"><i class="glyphicon glyphicon-edit"></i><h4 class="li-text">KULLANICI İŞLEMLERİ</h4></a>
                 </li>
-                {{-- <p><strong>Kullanıcı</strong> İşlemleri</p> --}}
 
                 <li>
                     <a href="{{ route('yetkigruplari.index') }}"><i class="glyphicon glyphicon-check"></i><h4 class="li-text">YETKİ<br>GRUPLARI</h4></a>
                 </li>
-                {{-- <p><strong>Kullanıcı</strong> Yetkilendirme İşlemleri</p> --}}
 
                 <li>
                     <a href="{{ route('admin.logout') }}"><i class="glyphicon glyphicon-log-out"></i><h4 class="li-text">ÇIKIŞ</h4></a>

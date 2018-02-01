@@ -65,6 +65,7 @@ class ReportController extends Controller
 
         $report->menuid = $request->menuid;
         $report->title = $request->title;
+        $report->connection = $request->connection;
         $report->dbquery = $request->dbquery;
 
         $report->save();
@@ -135,6 +136,7 @@ class ReportController extends Controller
 
         $report->menuid = $request->menuid;
         $report->title = $request->title;
+        $report->connection = $request->connection;
         $report->dbquery = $request->dbquery;
         $report->save();
 

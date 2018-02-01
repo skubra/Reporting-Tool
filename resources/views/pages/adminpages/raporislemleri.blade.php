@@ -19,6 +19,7 @@
 			      <th>ID</th>
 			      <th>Rapor Başlık</th>
 			      <th>Kategori</th>
+                  <th>DB Connection</th>
 			      <th></th>
 			    </tr>
 			</thead>
@@ -30,6 +31,7 @@
 							<a class="" href="{{ route('raporislemleri.show',$report->id) }}">{{ $report->title }}</a>
 						</td>
 						<td>{{ $report->menu->title }}</td>
+                        <td>{{ $report->connection }}</td>
 						<td>
 							<div class="buttons">
 								{!! Form::open(['route' => ['raporislemleri.edit', $report->id], 'method' => 'GET']) !!}
@@ -66,6 +68,10 @@
         <br>
         {{ Form::label('Başlık') }}
         {{ Form::text('title', '', ["class" => 'form-control']) }}
+
+        <br>
+        {{ Form::label('DB Connection') }}
+        {{ Form::text('connection', '', ["class" => 'form-control']) }}
 
         <br>
         {{ Form::label('Veri Tabanı Sorgusu') }}

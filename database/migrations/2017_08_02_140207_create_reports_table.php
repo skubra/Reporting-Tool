@@ -17,6 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->string('menuid');
             $table->string('title');
+            $table->string('connection');
             $table->string('dbquery');
             $table->timestamps();
         });

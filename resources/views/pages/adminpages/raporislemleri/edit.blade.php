@@ -49,12 +49,19 @@
 
           {{ Form::label('menuid', 'Menü ID:') }}
           {{ Form::text('menuid', null, ["class" => 'form-control']) }}
+          
           <br>
           {{ Form::label('title', "Başlık:" ) }}
           {{ Form::text('title', null, ['class' => 'form-control']) }}
+
+          <br>
+          {{ Form::label('connection', "DB Connection:" ) }}
+          {{ Form::text('connection', null, ['class' => 'form-control']) }}
+          
           <br>
           {{ Form::label('dbquery', "Veritabanı Sorgusu:" ) }}
           {{ Form::text('dbquery', null, ['class' => 'form-control']) }}
+          
           <br>
 
           <div class="center-item">

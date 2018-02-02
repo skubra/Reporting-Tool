@@ -187,15 +187,23 @@ class ReportController extends Controller
 
     public function loadReportContent(Request $request, $id){
 
-        $values = $_POST['values'];
+        if(isset($_POST['values'])){ 
+            $values = $_POST['values']; 
+        }
+
         array_shift($values); // Bu şekilde _token değerini sorguya dahil etmiyoruz
         $values = array_values($values); // key => value ikilisinde sadece value kısmını alıyoruz
 
         $report = Report::find($id);
 
-        $values_str = implode(',', array_fill(0, count($values), '?'));
-        $sql = "call ".$report->dbquery."({$values_str})";
-        $results = DB::select($sql, $values);
+        // To run query by calling procedures!
+
+        // $values_str = implode(',', array_fill(0, count($values), '?'));
+        // $sql = "call ".$report->dbquery."({$values_str})";
+        // $results = DB::connection('mysql')->select($sql, $values);
+
+        $sql = $report->dbquery;
+        $results = DB::connection($report->connection)->select($sql, $values);
 
         $response = array(
           'status' => 'success',

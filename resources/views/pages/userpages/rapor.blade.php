@@ -95,6 +95,8 @@
 			    var url = window.location.href;
 			    var token = $("input[name='_token']").val();
 
+			    var resp;
+
 			    // Fire off the request to current url
 		        $.ajax({
 		            method: 'post',
@@ -122,6 +124,8 @@
 						    table += '<tr>';
 						    $.each(item, function(key, value){
 						    	table += '<td>' + value + '</td>';
+						    	// if(key == 'islem')
+						    		// console.log(value);
 						    })
 						    table += '</tr>'
 						})
@@ -134,6 +138,7 @@
 		            },
 		            error: function(e) {
 		            	$("#resultsFromQuery").html('<br><div class="alert alert-danger"><strong>Hata! </strong>Görüntülemede hata meydana geldi.</div>');
+		            	
 		            	console.log("error");
 		            },
 		            complete: function(){
@@ -141,6 +146,8 @@
 		            },
 		            dataType: "json"
 		        });
+
+
 			});
 		});
 	</script>

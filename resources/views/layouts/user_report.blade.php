@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/awesomplete.css') }}">
     <link rel="stylesheet" href="{{ asset('css/kullanici.css') }}">
      @yield('css')
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+
 </head>
 <body>
     @if (Auth::user()->active != "Pasif")
@@ -83,6 +88,7 @@
         crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/awesomplete.js') }}"></script>
+
     @yield('scripts')
     <script>
         document.getElementById('awe').addEventListener('awesomplete-selectcomplete',function(){

@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('pages.welcome');
+    return view('pages.index');
 });
 
 Auth::routes();
@@ -26,4 +26,8 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::resource('admin/yetkigruplari','UserPermissionController');
 	Route::resource('admin/kategori', 'MenuController');
 	Route::put('admin/yetkigruplari/{id}/edit','UserPermissionController@updateTitle')->name('yetkigruplari.update.title');
+	Route::resource('rapor/{reportId}/graph', 'GraphController');
+	Route::get('test', function() {
+	    dd (DB::connection('oracle1')->getPdo());
+	});
 });

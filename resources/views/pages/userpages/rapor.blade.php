@@ -26,7 +26,8 @@
 @endsection
 
 @section('main-content')
-
+	
+	<div id="modals"></div>
 	<div id="resultsFromQuery"></div>
 
 @endsection
@@ -84,6 +85,7 @@
 			    // var inputs = $form.find("input, select, button, textarea");
 
 			    var values = {};
+
 				$.each($("#form").serializeArray(), function (i, field) {
 				    values[field.name] = field.value;
 				});
@@ -95,8 +97,6 @@
 			    var url = window.location.href;
 			    var token = $("input[name='_token']").val();
 
-			    var resp;
-
 			    // Fire off the request to current url
 		        $.ajax({
 		            method: 'post',
@@ -106,8 +106,104 @@
 		            	_token : token
 		            },
 		            success: function(response) {
+
+		            	//console.log(response.graphres);
 		            	console.log("success");
-		            	var check = false;
+		            	
+		            	// Add buttons and modal values
+
+		            	var checkgraphs = false;
+
+		            	var modals = '';
+		            	$.each(response.graphres, function(i, value){
+		            		checkgraphs = true;
+		            		modals += ('<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal' + response.graphres[i]['id'] + '">' + response.graphres[i]['title'] + '</button>');
+		            		modals += ('  ');
+		            	})
+
+		            	$.each(response.graphres, function(i, value){
+		            		modals += ('<div class="modal fade" id="myModal'+ response.graphres[i]['id']+ '" role="dialog">'+ 
+		            					'<div class="modal-dialog">' + 
+						 				'<div class="modal-content">' +
+		        						'<div class="modal-header">' +
+										'<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+		          						'<h4 class="modal-title">' + response.graphres[i]['title'] + '</h4>' +
+		        						'</div>' +
+								        '<div class="modal-body">' +
+								        '<div id="container" style="width:100%; height:400px;"></div>' +
+								        '</div>' +
+								        '<div class="modal-footer">' +
+								        '<button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>' +
+								        '</div></div></div></div>');
+		            	})
+
+		            	if(checkgraphs){
+		            		$('#modals').html(modals);
+		            	}
+
+		            	var graphs = [];
+
+		            	$.each(response.graphres, function(i, value){
+
+		            		// take from query for series data
+
+		            		var queryres = '';
+			            	queryres += '[';
+			            	
+			            	$.each(response.results, function(i, item) {
+			            		queryres += '{"name": "'+ item['islem'] +'", "y": '+ item[value['x_axis_param']] +'},';
+			            		
+							})
+							
+							queryres = queryres.slice(0, -1);
+							queryres += ']';
+
+							var seriesdata = JSON.parse(queryres);
+
+							// Generate graph for each saved graph input
+
+			            	var graph = Highcharts.chart('container', {
+							    chart: {
+							        plotBackgroundColor: null,
+							        plotBorderWidth: null,
+							        plotShadow: false,
+							        type: 'pie'
+							    },
+							    title: {
+							        text: response.graphres[0]['title']
+							    },
+							    tooltip: {
+							        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+							    },
+							    plotOptions: {
+							        pie: {
+							            allowPointSelect: true,
+							            cursor: 'pointer',
+							            dataLabels: {
+							                enabled: true,
+							                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							                style: {
+							                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							                }
+							            }
+							        }
+							    },
+							    series: [{
+							        name: 'Brands',
+							        colorByPoint: true,
+							        data: seriesdata
+							    }],
+								
+							});
+
+							graphs.push(graph);
+
+		            	})
+
+
+		            	// To print results table
+
+		            	var checktable = false;
 		            	// console.log(response.values);
 
 		            	var table = '<br><table class="table table-striped"><thead><tr>';
@@ -120,7 +216,7 @@
 		            	table += '</tr></thead><tbody>';
 
 		            	$.each(response.results, function(i, item) {
-		            		check = true;
+		            		checktable = true;
 						    table += '<tr>';
 						    $.each(item, function(key, value){
 						    	table += '<td>' + value + '</td>';
@@ -131,7 +227,7 @@
 						})
 						table += '</tbody></table>'
 
-		            	if(check){
+		            	if(checktable){
 		            		$("#resultsFromQuery").html(table);
 		            	}
 		            	else $("#resultsFromQuery").html('<br><div class="alert alert-warning"><strong>Uyarı! </strong>Görüntülenecek değer bulunmamaktadır.</div>');
@@ -149,7 +245,24 @@
 
 
 			});
+
 		});
 	</script>
+
+	<script>
+		
+		$(document).ready(function(){
+
+			$( "#modals" ).on( "click", function(event) {
+
+				
+
+			});
+
+		});
+
+	</script>
+
+
 
 @endsection

@@ -35,6 +35,10 @@ class FormSeeder extends Seeder
         $report->params()->attach(2);
         $report->params()->attach(3);
 
+        $report = App\Report::find(2);
+
+        $report->params()->attach(3);
+
         $menu = App\Menu::find(1);
 
 

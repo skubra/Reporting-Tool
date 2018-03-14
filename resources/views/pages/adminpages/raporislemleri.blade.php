@@ -37,10 +37,14 @@
 								{!! Form::open(['route' => ['raporislemleri.edit', $report->id], 'method' => 'GET']) !!}
 								{!! Form::submit('Düzenle', ['class' => 'btn btn-primary btn-sm']) !!}
 								{!! Form::close() !!}
-								{!! Form::open(['route' => ['raporislemleri.destroy', $report->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Raporu silmek istiyor musunuz?")']) !!}
+								
+                                {!! Form::open(['route' => ['raporislemleri.destroy', $report->id], 'method' => 'DELETE', 'onsubmit' => 'return confirm("Raporu silmek istiyor musunuz?")']) !!}
 								{!! Form::submit('Sil', ['class' => 'btn btn-danger btn-sm']) !!}
 								{!! Form::close() !!}
-                                <button class="btn btn-info btn-sm">Grafik Ekle</button>
+                                
+                                {!! Form::open(['route' => ['graph.index', $report->id], 'method' => 'GET']) !!}
+                                {!! Form::submit('Grafik Ekle/Düzenle', ['class' => 'btn btn-info btn-sm']) !!}
+                                {!! Form::close() !!}
 							</div>
  						</td>
 			    	</tr>
@@ -101,7 +105,7 @@
               <input style="margin-top:2px; margin-bottom: 2px;" type="text" name="label" placeholder="Alan Başlığı" class="form-control">
 
               <button type="button" class="btn btn-default" id="remove-node" style="display: block; margin: 0 auto;">Parametreyi Sil</button>
-            </div>
+        </div>
 
             <span id="writeroot"></span>
 
@@ -111,7 +115,7 @@
             <br>
             <button type="submit" class="btn btn-default" style="display: block; margin: 0 auto;">Kaydet</button>
 
-        </form>
+    </form>
 
 
         <div class="alert alert-error">

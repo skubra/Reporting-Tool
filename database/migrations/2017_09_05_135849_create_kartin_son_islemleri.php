@@ -16,6 +16,7 @@ class CreateKartinSonIslemleri extends Migration
         Schema::create('kartin_son_islemleri', function (Blueprint $table) {
             $table->Integer('kart_id')->unsigned();
             $table->string('islem');
+            $table->Integer('faker');
             $table->timestamps();
         });
     }

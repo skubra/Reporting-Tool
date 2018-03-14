@@ -8,12 +8,14 @@ use App\Menu;
 use App\FormParam;
 use App\FormContentParam;
 use App\AuthorityGroup;
+use App\GraphType;
 use Session;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\Debugbar\Facade as Debugbar;
 
 class ReportController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -203,12 +205,15 @@ class ReportController extends Controller
         // $results = DB::connection('mysql')->select($sql, $values);
 
         $sql = $report->dbquery;
+        
         $results = DB::connection($report->connection)->select($sql, $values);
+        $graphres = $report->graphs;
 
         $response = array(
           'status' => 'success',
           'results' => $results,
-          'values' => $values
+          'values' => $values,
+          'graphres' => $graphres
         );
 
         return response()->json($response);

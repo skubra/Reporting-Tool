@@ -57,5 +57,6 @@ class ReportSeeder extends Seeder
         DB::table('menus')->insert([
             'title' => 'Hakediş Raporları',
         ]);
+
     }
 }

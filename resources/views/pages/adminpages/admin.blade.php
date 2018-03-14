@@ -8,7 +8,7 @@
 
 @section('content')
 
-{{--     
+<!--    
     <table align="center">
         <tr>
             <th>Kullanıcı<br>Sayısı</th>
@@ -21,7 +21,7 @@
             <td>{{$reports->count()}}</td>
         </tr>
     </table> 
---}}
+-->
 
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; margin-top: 20px;"></div>
 

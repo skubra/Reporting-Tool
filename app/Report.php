@@ -21,4 +21,8 @@ class Report extends Model
     public function group(){
         return $this->belongsToMany('App\AuthorityGroup');
     }
+
+    public function graphs(){
+        return $this->belongsToMany('App\Graph');
+    }
 }
